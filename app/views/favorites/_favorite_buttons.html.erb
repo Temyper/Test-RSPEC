@@ -1,0 +1,14 @@
+<% if book.favorited_by?(current_user) %>
+  <div id="removing_a_favorite_button<%= book.id %>">
+    <%= link_to book_favorites_path(book), method: :delete, remote: true do %>
+      ♡<%= book.favorites.count %>
+    <% end %>
+  </div>
+<% else %>
+<!--20210111要素名に使うだけの変数になぜか「=」が要るらしい-->
+  <div id="adding_a_favorite_button<%= book.id %>">
+    <%= link_to book_favorites_path(book), method: :post, remote: true do %>
+      ♥<%= book.favorites.count %>
+    <% end %>
+  </div>
+<% end %>

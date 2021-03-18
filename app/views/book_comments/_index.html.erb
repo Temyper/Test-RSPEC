@@ -1,0 +1,22 @@
+<div id="book_comments_area">
+  <% book.book_comments.each do |book_comment| %>
+  <div id="a_book_comment_id_<%= book_comment.id %>">
+    <%= form_with(model:[book, book_comment], method: "delete", remote: true) do |f| %>
+        <%= link_to user_path(book_comment.user) do %>
+        <%= attachment_image_tag(book_comment.user, :profile_image, :fill, 100, 100, fallback: "no-image-icon.jpg") %><br>
+        <%= book_comment.user.name %>
+        <% end %>
+        <%= book_comment.comment %>
+      <% if book_comment.user == current_user %>
+
+          <!--<div class="comment-delete">-->
+          <%#  <%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
+          <!--</div>-->
+
+            <%= f.submit "削除" %>
+
+      <% end %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
